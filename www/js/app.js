@@ -6,25 +6,25 @@
 angular.module('app', ['ionic', 'ionic.native', 'app.OneCtrl'])
 .run(['$ionicPlatform', '$cordovaDeeplinks', '$state', '$timeout', function($ionicPlatform, $cordovaDeeplinks, $state, $timeout) {
   $ionicPlatform.ready(function() {
-    // $cordovaDeeplinks.route({'/account':{ target:'tab.account', parent:'tab-account' }}).subscribe(function(match) {
-    //     alert('New success!');
-    //     $timeout(function() {
-    //         $state.go(match.$route.parent, match.$args);
-    //         alert('It almost works!!!');
-    //         // Finally, we will navigate to the deeplink page. Now the user has
-    //         // the 'product' view visibile, and the back button goes back to the
-    //         // 'products' view.
-    //         $timeout(function() {
-    //               $state.go(match.$route.target, match.$args);
-    //               alert('It works!!!');
-    //         }, 800);
-    //     }, 100); // Timeouts can be tweaked to customize the feel of the deeplink
-    //     // One of our routes matched, we will quickly navigate to our parent
-    //     // view to give the user a natural back button flow
-    // }, function(nomatch) {
-    //     alert('You are wrong...');
-    //     console.warn('No match', nomatch);
-    // })
+    $cordovaDeeplinks.route({'/account':{ target:'tab-account', parent:'tab.account' }}).subscribe(function(match) {
+        alert('New success!');
+        $timeout(function() {
+            $state.go(match.$route.parent, match.$args);
+            alert('It almost works!!!');
+            // Finally, we will navigate to the deeplink page. Now the user has
+            // the 'product' view visibile, and the back button goes back to the
+            // 'products' view.
+            $timeout(function() {
+                  $state.go(match.$route.target, match.$args);
+                  alert('It works!!!');
+            }, 800);
+        }, 100); // Timeouts can be tweaked to customize the feel of the deeplink
+        // One of our routes matched, we will quickly navigate to our parent
+        // view to give the user a natural back button flow
+    }, function(nomatch) {
+        alert('You are wrong...');
+        console.warn('No match', nomatch);
+    })
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
